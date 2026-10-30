@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/* Design system — CM Multi Lubrificantes
+   Grafite (estrutura), vermelho (atenção), branco e cinza claro (respiro). */
+@theme {
+  --color-graphite: #15191f;
+  --color-graphite-2: #202630;
+  --color-graphite-3: #2b323d;
+  --color-red: #d72828;
+  --color-red-dark: #b81f1f;
+  /* Vermelho para textos pequenos sobre grafite (contraste AA) */
+  --color-red-light: #f05252;
+  --color-paper: #ffffff;
+  --color-mist: #f4f5f7;
+  --color-body: #626975;
+  --color-line: #e3e5e8;
+  --color-line-dark: #2e3540;
+
+  --font-display: var(--font-barlow), "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-sans: var(--font-manrope), "Manrope", system-ui, sans-serif;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-graphite);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-red);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-red);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Títulos condensados em caixa alta */
+  .display-xl,
+  .display-lg,
+  .display-md {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .display-xl {
+    font-weight: 800;
+    font-size: clamp(2.875rem, 1.9rem + 4.3vw, 4.75rem);
+    line-height: 0.94;
+    letter-spacing: 0.002em;
+  }
+  .display-lg {
+    font-weight: 800;
+    font-size: clamp(2.25rem, 1.75rem + 2vw, 3rem);
+    line-height: 0.98;
+    letter-spacing: 0.004em;
+  }
+  .display-md {
+    font-weight: 700;
+    font-size: clamp(1.625rem, 1.45rem + 0.6vw, 2rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 2px;
+    background: currentColor;
+  }
+
+  .lead {
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .section {
+    padding-block: clamp(4.5rem, 3rem + 5.5vw, 8.5rem);
+  }
+
+  /* Marcador de informação pendente — visível de propósito */
+  .pending {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px dashed currentColor;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* Malha técnica discreta para superfícies grafite */
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
